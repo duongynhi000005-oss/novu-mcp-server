@@ -38,6 +38,7 @@ async function handleAuthorizationServerMetadata(
 		}
 
 		const metadata = (await upstream.json()) as Record<string, unknown>;
+		metadata.issuer = ctx.origin;
 		metadata.scopes_supported = [...OAUTH_SCOPES];
 		metadata.registration_endpoint = `${ctx.origin}${DCR_PATH}`;
 
